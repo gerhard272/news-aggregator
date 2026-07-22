@@ -26,7 +26,9 @@
 
           <h1>Si è verificato un errore</h1>
 
-          <p>{{ errore() }}</p>
+          <p>
+            {{ errore() }}
+          </p>
 
           <div class="article-error__actions">
             <button
@@ -47,27 +49,6 @@
         </div>
       </section>
 
-    } @else if (articoloNonTrovato()) {
-      <section class="article-not-found">
-        <p class="article-not-found__code">
-          404
-        </p>
-
-        <h1>Articolo non trovato</h1>
-
-        <p>
-          L’articolo che stai cercando non esiste,
-          è stato rimosso oppure l’indirizzo non è corretto.
-        </p>
-
-        <a
-          routerLink="/notizie"
-          class="btn btn--primary"
-        >
-          Torna alle notizie
-        </a>
-      </section>
-
     } @else if (articolo(); as articoloCorrente) {
       <article class="article-detail">
 
@@ -85,13 +66,21 @@
               {{ articoloCorrente.categoria | uppercase }}
             </span>
 
-            <time [attr.datetime]="articoloCorrente.data">
-              {{ articoloCorrente.data | date: 'dd/MM/yyyy' }}
+            <time
+              [attr.datetime]="articoloCorrente.data"
+            >
+              {{
+                articoloCorrente.data
+                  | date: 'dd/MM/yyyy'
+              }}
             </time>
           </div>
 
           <h1 class="article-detail__title">
-            {{ articoloCorrente.titolo | titlecase }}
+            {{
+              articoloCorrente.titolo
+                | titlecase
+            }}
           </h1>
         </header>
 

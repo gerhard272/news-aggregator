@@ -13,10 +13,11 @@ import {
 
 import {
   ActivatedRoute,
+  Router,
   RouterLink
 } from '@angular/router';
 
-import { finalize } from 'rxjs';
+import { take } from 'rxjs';
 
 import { Articolo as ArticoloModel } from '../../models/articolo';
 import { Notizie as NotizieService } from '../../services/notizie';
@@ -36,13 +37,19 @@ import { Preferiti as PreferitiService } from '../../services/preferiti';
 })
 export class Articolo implements OnInit {
   private readonly route = inject(ActivatedRoute);
-  private readonly notizieService = inject(NotizieService);
-  private readonly preferitiService = inject(PreferitiService);
+  private readonly router = inject(Router);
 
-  readonly articolo = signal<ArticoloModel | undefined>(undefined);
+  private readonly notizieService =
+    inject(NotizieService);
+
+  private readonly preferitiService =
+    inject(PreferitiService);
+
+  readonly articolo =
+    signal<ArticoloModel | undefined>(undefined);
+
   readonly caricamento = signal(false);
   readonly errore = signal('');
-  readonly articoloNonTrovato = signal(false);
 
   ngOnInit(): void {
     this.caricaArticolo();
@@ -51,10 +58,11 @@ export class Articolo implements OnInit {
   caricaArticolo(): void {
     this.caricamento.set(true);
     this.errore.set('');
-    this.articoloNonTrovato.set(false);
     this.articolo.set(undefined);
 
-    const idParam = this.route.snapshot.paramMap.get('id');
+    const idParam =
+      this.route.snapshot.paramMap.get('id');
+
     const id = Number(idParam);
 
     if (
@@ -62,26 +70,22 @@ export class Articolo implements OnInit {
       Number.isNaN(id) ||
       id <= 0
     ) {
-      this.articoloNonTrovato.set(true);
-      this.caricamento.set(false);
+      this.vaiANotFoundArticolo();
       return;
     }
 
     this.notizieService
       .getArticoloById(id)
-      .pipe(
-        finalize(() => {
-          this.caricamento.set(false);
-        })
-      )
+      .pipe(take(1))
       .subscribe({
         next: (articoloTrovato) => {
           if (!articoloTrovato) {
-            this.articoloNonTrovato.set(true);
+            this.vaiANotFoundArticolo();
             return;
           }
 
           this.articolo.set(articoloTrovato);
+          this.caricamento.set(false);
         },
 
         error: (errore) => {
@@ -93,6 +97,8 @@ export class Articolo implements OnInit {
           this.errore.set(
             'Non è stato possibile caricare l’articolo. Riprova più tardi.'
           );
+
+          this.caricamento.set(false);
         }
       });
   }
@@ -116,6 +122,24 @@ export class Articolo implements OnInit {
       return;
     }
 
-    this.preferitiService.toggle(articoloCorrente);
+    this.preferitiService.toggle(
+      articoloCorrente
+    );
+  }
+
+  private vaiANotFoundArticolo(): void {
+    /*
+     * Ferma lo spinner prima della navigazione.
+     */
+    this.caricamento.set(false);
+
+    this.router.navigate(
+      ['/404'],
+      {
+        queryParams: {
+          tipo: 'articolo'
+        }
+      }
+    );
   }
 }
