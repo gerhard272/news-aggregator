@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Categorie } from '../../services/categorie';
+import { Categoria } from '../../models/categoria';
 
 @Component({
   selector: 'app-scrivi',
@@ -7,9 +9,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './scrivi.html',
   styleUrl: './scrivi.css'
 })
-export class Scrivi {
+export class Scrivi implements OnInit {
   private fb = inject(FormBuilder);
+  private categorieService = inject(Categorie);
+  
   inviato = false;
+  categorieDisponibili = signal<Categoria[]>([]);
 
   segnalazioneForm = this.fb.group({
     nome: ['', Validators.required],
@@ -19,6 +24,13 @@ export class Scrivi {
     descrizione: ['', [Validators.required, Validators.minLength(10)]],
     urgenza: ['bassa', Validators.required]
   });
+
+  ngOnInit() {
+    this.categorieService.getCategorie().subscribe({
+      next: (data) => this.categorieDisponibili.set(data),
+      error: (err) => console.error('Errore nel caricamento categorie:', err)
+    });
+  }
 
   invia() {
     if (this.segnalazioneForm.valid) {

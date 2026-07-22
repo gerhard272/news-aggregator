@@ -39,11 +39,9 @@
           <label for="categoria">Categoria *</label>
           <select id="categoria" formControlName="categoria">
             <option value="" disabled selected>Seleziona una categoria...</option>
-            <option value="tech">Tecnologia</option>
-            <option value="sport">Sport</option>
-            <option value="scienza">Scienza</option>
-            <option value="politica">Politica</option>
-            <option value="economia">Economia</option>
+            @for (cat of categorieDisponibili(); track cat.slug) {
+              <option [value]="cat.slug">{{ cat.nome }}</option>
+            }
           </select>
           @if (segnalazioneForm.get('categoria')?.invalid && segnalazioneForm.get('categoria')?.touched) {
             <span class="error-msg">La categoria è obbligatoria</span>
