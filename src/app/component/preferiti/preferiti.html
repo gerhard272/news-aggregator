@@ -21,7 +21,7 @@
   @if (preferitiService.preferiti().length > 0) {
     <div class="news-grid">
       @for (articolo of preferitiService.preferiti(); track articolo.id) {
-        <app-articolo-card [articolo]="articolo" />
+        <app-articolo-card [articolo]="articolo" [preferito]="preferitiService.isPreferito(articolo.id)" (togglePreferito)="onTogglePreferito($event)" />
       }
     </div>
     } @else {
