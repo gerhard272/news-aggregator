@@ -1,1 +1,142 @@
-<p>articolo works!</p>
+<main class="page">
+  <div class="container">
+
+    @if (caricamento()) {
+      <section class="loading-state">
+        <div class="loading-state__content">
+          <div
+            class="spinner"
+            role="status"
+            aria-label="Caricamento dell'articolo"
+          ></div>
+
+          <p>Caricamento dell’articolo...</p>
+        </div>
+      </section>
+
+    } @else if (errore()) {
+      <section class="article-error">
+        <div class="article-error__content">
+          <span
+            class="article-error__icon"
+            aria-hidden="true"
+          >
+            ⚠️
+          </span>
+
+          <h1>Si è verificato un errore</h1>
+
+          <p>{{ errore() }}</p>
+
+          <div class="article-error__actions">
+            <button
+              type="button"
+              class="btn btn--primary"
+              (click)="caricaArticolo()"
+            >
+              Riprova
+            </button>
+
+            <a
+              routerLink="/notizie"
+              class="btn btn--outline"
+            >
+              Torna alle notizie
+            </a>
+          </div>
+        </div>
+      </section>
+
+    } @else if (articoloNonTrovato()) {
+      <section class="article-not-found">
+        <p class="article-not-found__code">
+          404
+        </p>
+
+        <h1>Articolo non trovato</h1>
+
+        <p>
+          L’articolo che stai cercando non esiste,
+          è stato rimosso oppure l’indirizzo non è corretto.
+        </p>
+
+        <a
+          routerLink="/notizie"
+          class="btn btn--primary"
+        >
+          Torna alle notizie
+        </a>
+      </section>
+
+    } @else if (articolo(); as articoloCorrente) {
+      <article class="article-detail">
+
+        <a
+          routerLink="/notizie"
+          class="article-detail__back"
+        >
+          <span aria-hidden="true">←</span>
+          Torna alle notizie
+        </a>
+
+        <header class="article-detail__header">
+          <div class="article-detail__meta">
+            <span class="category-badge">
+              {{ articoloCorrente.categoria | uppercase }}
+            </span>
+
+            <time [attr.datetime]="articoloCorrente.data">
+              {{ articoloCorrente.data | date: 'dd/MM/yyyy' }}
+            </time>
+          </div>
+
+          <h1 class="article-detail__title">
+            {{ articoloCorrente.titolo | titlecase }}
+          </h1>
+        </header>
+
+        @if (articoloCorrente.immagine) {
+          <figure class="article-detail__figure">
+            <img
+              class="article-detail__image"
+              [src]="articoloCorrente.immagine"
+              [alt]="articoloCorrente.titolo"
+            />
+          </figure>
+        }
+
+        <section class="article-detail__content">
+          <p>
+            {{ articoloCorrente.contenuto }}
+          </p>
+        </section>
+
+        <footer class="article-detail__footer">
+          <button
+            type="button"
+            class="btn favorite-action"
+            [class.favorite-action--active]="isPreferito()"
+            (click)="togglePreferito()"
+          >
+            @if (isPreferito()) {
+              <span aria-hidden="true">★</span>
+              Rimuovi dai preferiti
+            } @else {
+              <span aria-hidden="true">☆</span>
+              Aggiungi ai preferiti
+            }
+          </button>
+
+          <a
+            routerLink="/notizie"
+            class="btn btn--outline"
+          >
+            Torna alla lista
+          </a>
+        </footer>
+
+      </article>
+    }
+
+  </div>
+</main>

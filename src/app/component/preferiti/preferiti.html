@@ -1,25 +1,28 @@
 <section class="page container">
-
-    <!-- Header -->
-    <div class="page-header">
-        <h1>⭐ I tuoi Preferiti</h1>
-        <p>Qui trovi tutti gli articoli a cui hai messo la stellina. Torna quando vuoi per rileggerli!</p>
-    </div>
+  <!-- Header -->
+  <div class="page-header">
+    <h1>⭐ I tuoi Preferiti</h1>
+    <p>
+      Qui trovi tutti gli articoli a cui hai messo la stellina. Torna quando vuoi per rileggerli!
+    </p>
+  </div>
 
     <!-- Contatore -->
     @if (preferitiService.totalePreferiti() > 0) {
     <div class="preferiti-counter">
-        <span class="counter-badge">{{ preferitiService.totalePreferiti() }}</span>
-        <span>{{ preferitiService.totalePreferiti() === 1 ? 'articolo salvato' : 'articoli salvati' }}</span>
+      <span class="counter-badge">{{ preferitiService.totalePreferiti() }}</span>
+      <span>{{
+        preferitiService.totalePreferiti() === 1 ? 'articolo salvato' : 'articoli salvati'
+      }}</span>
     </div>
     }
 
-    <!-- Griglia articoli preferiti -->
-    @if (preferitiService.preferiti().length > 0) {
-    <div class="grid news-grid">
-        @for (articolo of preferitiService.preferiti(); track articolo.id) {
-        <app-articolo-card [articolo]="articolo" [preferito]="true" (togglePreferito)="onTogglePreferito($event)" />
-        }
+  <!-- Griglia articoli preferiti -->
+  @if (preferitiService.preferiti().length > 0) {
+    <div class="news-grid">
+      @for (articolo of preferitiService.preferiti(); track articolo.id) {
+        <app-articolo-card [articolo]="articolo" />
+      }
     </div>
     } @else {
     <!-- Stato vuoto -->
@@ -29,6 +32,5 @@
         <p>Esplora le notizie e clicca sulla stellina per salvare i tuoi articoli preferiti.</p>
         <a routerLink="/notizie" class="btn btn--primary">Esplora le notizie</a>
     </div>
-    }
-
+  }
 </section>

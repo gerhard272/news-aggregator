@@ -8,11 +8,7 @@
   } @else {
     <div class="home-grid">
       @for (articolo of articoli(); track articolo.id) {
-        <app-articolo-card
-          [articolo]="articolo"
-          [preferito]="preferitiService.isPreferito(articolo.id)"
-          (togglePreferito)="onTogglePreferito($event)"
-        />
+        <app-articolo-card [articolo]="articolo" />
       }
     </div>
   }
