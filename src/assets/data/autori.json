@@ -6,13 +6,6 @@
     "articoli": 3
   },
   {
-    "id": 2,
-    "nome": "Giulia Bianchi",
-    "bio": "Esperta di economia e mercati finanziari.",
-    "articoli": 2,
-    "fotoUrl": "assets/img/autori/giulia.jpg"
-  },
-  {
     "id": 3,
     "nome": "Luca Verdi",
     "bio": "Appassionato di sport e cronaca sportiva.",
