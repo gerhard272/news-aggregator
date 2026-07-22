@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "nome": "Mario Rossi",
+    "bio": "Giornalista tech con 10 anni di esperienza.",
+    "articoli": 3
+  },
+  {
+    "id": 3,
+    "nome": "Luca Verdi",
+    "bio": "Appassionato di sport e cronaca sportiva.",
+    "articoli": 2
+  },
+  { "id": 4, "nome": "Sara Neri", "bio": "Scrive di cultura, arte e spettacolo.", "articoli": 1 }
+]

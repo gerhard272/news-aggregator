@@ -1,1 +1,50 @@
-<p>autore-detail works!</p>
+<div class="autore-detail-container">
+  <!-- Pulsante per tornare indietro -->
+  <div class="back-link">
+    <a routerLink="/autori">← Torna a tutti gli autori</a>
+  </div>
+
+  @if (autore(); as a) {
+    <div class="autore-profile card">
+      <div class="profile-header">
+        <div class="author-avatar-large">
+          @if (a.fotoUrl) {
+            <img [src]="a.fotoUrl" [alt]="a.nome" />
+          } @else {
+            <span class="avatar-placeholder">{{ a.nome | slice: 0 : 1 }}</span>
+          }
+        </div>
+        <div class="profile-info">
+          <h2>{{ a.nome }}</h2>
+          <p class="profile-bio">{{ a.bio }}</p>
+          <div class="profile-stats">
+            <span class="badge"
+              >{{ a.articoli }}
+              {{ a.articoli === 1 ? 'articolo scritto' : 'articoli scritti' }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="autore-articoli">
+      <h3 class="articoli-title">Articoli recenti</h3>
+
+      @if (articoli().length > 0) {
+        <div class="grid news-grid">
+          @for (articolo of articoli(); track articolo.id) {
+            <app-articolo-card [articolo]="articolo" />
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <p>Nessun articolo trovato per questo autore.</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="loading-state">
+      <p>Caricamento profilo...</p>
+    </div>
+  }
+</div>

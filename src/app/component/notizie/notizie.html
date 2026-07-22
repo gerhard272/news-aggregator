@@ -1,1 +1,158 @@
-<p>notizie works!</p>
+<main class="page">
+  <div class="container">
+    <header class="page-header">
+      <p class="page-header__label">
+        News Aggregator
+      </p>
+
+      <h1>Tutte le notizie</h1>
+
+      <p>
+        Esplora gli articoli disponibili e filtra i risultati
+        per categoria oppure per data.
+      </p>
+    </header>
+
+    <section
+      class="filters"
+      aria-label="Filtri delle notizie"
+    >
+      <div class="filters__group">
+        <label
+          class="form-label"
+          for="categoria"
+        >
+          Categoria
+        </label>
+
+        <select
+          id="categoria"
+          class="form-control"
+          [(ngModel)]="categoriaSelezionata"
+        >
+          <option value="">
+            Tutte le categorie
+          </option>
+
+          @for (categoria of categorie; track categoria.slug) {
+            <option [value]="categoria.slug">
+              {{ categoria.emoji }} {{ categoria.nome }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="filters__group">
+        <label
+          class="form-label"
+          for="data"
+        >
+          Data
+        </label>
+
+        <input
+          id="data"
+          class="form-control"
+          type="date"
+          [(ngModel)]="dataSelezionata"
+        />
+      </div>
+
+      <div class="filters__actions">
+        <button
+          type="button"
+          class="btn btn--outline"
+          (click)="resetFiltri()"
+        >
+          Azzera filtri
+        </button>
+      </div>
+    </section>
+
+    @if (caricamento) {
+      <section class="loading-state">
+        <div class="loading-state__content">
+          <div
+            class="spinner"
+            role="status"
+            aria-label="Caricamento delle notizie"
+          ></div>
+
+          <p>Caricamento delle notizie...</p>
+        </div>
+      </section>
+    } @else if (errore) {
+      <section class="alert alert--error error-state">
+        <div>
+          <h2>Si è verificato un errore</h2>
+          <p>{{ errore }}</p>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn--outline"
+          (click)="caricaDati()"
+        >
+          Riprova
+        </button>
+      </section>
+    } @else {
+      <section class="notizie-results">
+        <div class="notizie-results__header">
+          <div>
+            <h2>Articoli disponibili</h2>
+
+            <p>
+              {{ articoliFiltrati.length }}
+
+              @if (articoliFiltrati.length === 1) {
+                risultato trovato
+              } @else {
+                risultati trovati
+              }
+            </p>
+          </div>
+        </div>
+
+        @if (articoliFiltrati.length > 0) {
+          <div class="news-grid">
+            @for (
+              articolo of articoliFiltrati;
+              track articolo.id
+            ) {
+              <app-articolo-card
+                [articolo]="articolo"
+              />
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <div class="empty-state__content">
+              <span
+                class="empty-state__icon"
+                aria-hidden="true"
+              >
+                🔎
+              </span>
+
+              <h2>Nessuna notizia trovata</h2>
+
+              <p>
+                Non ci sono articoli corrispondenti
+                ai filtri selezionati.
+              </p>
+
+              <button
+                type="button"
+                class="btn btn--primary"
+                (click)="resetFiltri()"
+              >
+                Mostra tutte le notizie
+              </button>
+            </div>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</main>

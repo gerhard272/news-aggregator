@@ -1,1 +1,38 @@
-<p>articolo-card works!</p>
+<article class="card" [routerLink]="['/notizie', articolo().id]">
+
+  <!-- Immagine (da implementare in seguito) -->
+  <div class="card-img">
+    @if (categoria()) {
+      <app-categoria-badge [categoria]="categoria()!" />
+    } @else {
+      <span class="categoria-tag">{{ articolo().categoria | uppercase }}</span>
+    }
+  </div>
+
+  <!-- Contenuto -->
+  <div class="card-body">
+    <div class="card-meta">
+      <time>{{ articolo().data | date:'dd MMM yyyy' }}</time>
+    </div>
+
+    <h3 class="card-titolo">{{ articolo().titolo | titlecase }}</h3>
+
+    <p class="card-anteprima">
+      {{ articolo().contenuto | slice:0:120 }}...
+    </p>
+  </div>
+
+  <!-- Footer card -->
+  <div class="card-footer">
+    <span class="leggi-link">Leggi articolo →</span>
+
+    <button
+      class="btn-preferito"
+      [class.attivo]="preferito()"
+      (click)="onTogglePreferito($event)"
+      [attr.aria-label]="preferito() ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
+      {{ preferito() ? '★' : '☆' }}
+    </button>
+  </div>
+
+</article>

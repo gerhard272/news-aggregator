@@ -1,1 +1,81 @@
-<p>categorie works!</p>
+<main class="page">
+  <div class="container">
+    <header class="page-header">
+      <p class="page-header__label">News Aggregator</p>
+      <h1>Esplora per categoria</h1>
+      <p>Scopri tutte le categorie disponibili e trova gli articoli che ti interessano.</p>
+    </header>
+
+    @if (caricamento) {
+      <section class="loading-state">
+        <div class="loading-state__content">
+          <div class="spinner" role="status" aria-label="Caricamento delle categorie"></div>
+          <p>Caricamento delle categorie...</p>
+        </div>
+      </section>
+    } @else if (errore) {
+      <section class="alert alert--error error-state">
+        <div>
+          <h2>Si è verificato un errore</h2>
+          <p>{{ errore }}</p>
+        </div>
+        <button type="button" class="btn btn--outline" (click)="caricaCategorie()">
+          Riprova
+        </button>
+      </section>
+    } @else if (!categoriaSelezionata) {
+      <section class="categorie-results">
+        @if (categorie.length > 0) {
+          <div class="categorie-grid">
+            @for (cat of categorie; track cat.slug) {
+              <button type="button" class="categoria-card" (click)="selezionaCategoria(cat)">
+                <app-categoria-badge [categoria]="cat" />
+             
+              </button>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <div class="empty-state__content">
+              <span class="empty-state__icon" aria-hidden="true">🏷️</span>
+              <h2>Nessuna categoria disponibile</h2>
+              <p>Al momento non ci sono categorie da mostrare.</p>
+            </div>
+          </div>
+        }
+      </section>
+    } @else {
+      <section class="articoli-categoria">
+        <div class="articoli-categoria__header">
+          <button type="button" class="btn btn--outline" (click)="tornaAllaGriglia()">
+            ← Tutte le categorie
+          </button>
+          <app-categoria-badge [categoria]="categoriaSelezionata" />
+        </div>
+
+        @if (caricamentoArticoli) {
+          <div class="loading-state">
+            <div class="loading-state__content">
+              <div class="spinner" role="status" aria-label="Caricamento degli articoli"></div>
+              <p>Caricamento degli articoli...</p>
+            </div>
+          </div>
+        } @else if (articoliCategoria.length > 0) {
+          <div class="categorie-grid">
+            @for (articolo of articoliCategoria; track articolo.id) {
+              <app-articolo-card [articolo]="articolo" />
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <div class="empty-state__content">
+              <span class="empty-state__icon" aria-hidden="true">🔎</span>
+              <h2>Nessun articolo trovato</h2>
+              <p>Non ci sono ancora articoli per questa categoria.</p>
+            </div>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</main>

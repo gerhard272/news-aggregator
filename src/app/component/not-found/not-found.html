@@ -1,1 +1,46 @@
-<p>not-found works!</p>
+<main class="not-found">
+  <section class="not-found__content">
+    <div class="not-found__illustration" aria-hidden="true">
+      <div class="newspaper">
+        <div class="newspaper__image"></div>
+
+        <div class="newspaper__lines">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="magnifier"></div>
+    </div>
+
+    <p class="not-found__code">404</p>
+
+    <h1 class="not-found__title">
+      Pagina non trovata
+    </h1>
+
+    <p class="not-found__description">
+      Ops! La pagina che stai cercando non esiste
+      oppure è stata spostata.
+    </p>
+
+    <div class="not-found__actions">
+      <a
+        routerLink="/"
+        class="btn btn--primary"
+      >
+        <span aria-hidden="true">⌂</span>
+        Torna alla Home
+      </a>
+
+      <a
+        routerLink="/notizie"
+        class="btn btn--outline"
+      >
+        Esplora le notizie
+      </a>
+    </div>
+  </section>
+</main>

@@ -1,1 +1,15 @@
-<p>home works!</p>
+<section class="home">
+  <h1 class="home-titolo">Ultime notizie in evidenza</h1>
+
+  @if (caricamento()) {
+    <p class="home-loading">Caricamento articoli...</p>
+  } @else if (articoli().length === 0) {
+    <p class="home-empty">Nessun articolo disponibile al momento.</p>
+  } @else {
+    <div class="home-grid">
+      @for (articolo of articoli(); track articolo.id) {
+        <app-articolo-card [articolo]="articolo" />
+      }
+    </div>
+  }
+</section>

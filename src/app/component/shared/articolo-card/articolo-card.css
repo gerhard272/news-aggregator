@@ -1,0 +1,167 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* ===== Card Container ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+/* ===== Immagine / Placeholder ===== */
+.card-img {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, #16213e, #0f3460);
+  overflow: hidden;
+}
+
+/* Shine al passaggio del mouse sull'immagine */
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
+  background-size: 400px 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-img::after {
+  opacity: 1;
+  animation: shimmer 0.7s ease;
+}
+
+.categoria-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(99, 102, 241, 0.85);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ===== Body ===== */
+.card-body {
+  padding: 1.1rem 1.2rem 0.6rem;
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-meta time {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.card-titolo {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f0f0f5;
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-anteprima {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Footer ===== */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.leggi-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #60a5fa;
+  transition: color 0.2s ease;
+}
+
+.card:hover .leggi-link {
+  color: #93c5fd;
+}
+
+/* ===== Bottone Preferito ===== */
+.btn-preferito {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 4px;
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+.btn-preferito:hover {
+  color: #facc15;
+  transform: scale(1.2);
+}
+
+.btn-preferito.attivo {
+  color: #facc15;
+  animation: popIn 0.3s ease;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .card-img {
+    height: 140px;
+  }
+
+  .card-body {
+    padding: 0.9rem 1rem 0.5rem;
+  }
+
+  .card-titolo {
+    font-size: 0.95rem;
+  }
+}

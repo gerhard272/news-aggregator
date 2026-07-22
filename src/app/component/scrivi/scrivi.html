@@ -1,1 +1,94 @@
-<p>scrivi works!</p>
+<div class="scrivi-container">
+  <div class="form-wrapper">
+    <div class="form-header">
+      <h2>Invia Segnalazione</h2>
+      <p>Inviaci una segnalazione o un suggerimento su una notizia. Compila i campi qui sotto.</p>
+    </div>
+
+    @if (inviato) {
+    <div class="success-message">
+      <span class="icon">✅</span>
+      <h3>Segnalazione inviata con successo!</h3>
+      <p>Il nostro team leggerà la tua richiesta il prima possibile.</p>
+    </div>
+    }
+
+    <form [formGroup]="segnalazioneForm" (ngSubmit)="invia()" class="segnalazione-form" [class.hidden]="inviato">
+
+      <!-- Nome ed Email -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome *</label>
+          <input type="text" id="nome" formControlName="nome" placeholder="Il tuo nome">
+          @if (segnalazioneForm.get('nome')?.invalid && segnalazioneForm.get('nome')?.touched) {
+          <span class="error-msg">Il nome è obbligatorio</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" formControlName="email" placeholder="La tua email">
+          @if (segnalazioneForm.get('email')?.invalid && segnalazioneForm.get('email')?.touched) {
+          <span class="error-msg">Inserisci un'email valida</span>
+          }
+        </div>
+      </div>
+
+      <!-- Categoria e Titolo Notizia -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="categoria">Categoria *</label>
+          <select id="categoria" formControlName="categoria">
+            <option value="" disabled selected>Seleziona una categoria...</option>
+            @for (cat of categorieDisponibili(); track cat.slug) {
+            <option [value]="cat.slug">{{ cat.nome }}</option>
+            }
+          </select>
+          @if (segnalazioneForm.get('categoria')?.invalid && segnalazioneForm.get('categoria')?.touched) {
+          <span class="error-msg">La categoria è obbligatoria</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="titoloNotizia">Titolo Notizia *</label>
+          <input type="text" id="titoloNotizia" formControlName="titoloNotizia" placeholder="Titolo dell'articolo">
+          @if (segnalazioneForm.get('titoloNotizia')?.invalid && segnalazioneForm.get('titoloNotizia')?.touched) {
+          <span class="error-msg">Il titolo della notizia è obbligatorio</span>
+          }
+        </div>
+      </div>
+
+      <!-- Urgenza (Radio) -->
+      <div class="form-group full-width">
+        <label>Urgenza della segnalazione *</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" formControlName="urgenza" value="bassa">
+            <span class="radio-custom bassa">Bassa</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" formControlName="urgenza" value="media">
+            <span class="radio-custom media">Media</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" formControlName="urgenza" value="alta">
+            <span class="radio-custom alta">Alta</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Descrizione -->
+      <div class="form-group full-width">
+        <label for="descrizione">Descrizione della segnalazione *</label>
+        <textarea id="descrizione" rows="4" formControlName="descrizione"
+          placeholder="Descrivi qui il motivo della segnalazione..."></textarea>
+        @if (segnalazioneForm.get('descrizione')?.invalid && segnalazioneForm.get('descrizione')?.touched) {
+        <span class="error-msg">La descrizione deve contenere almeno 10 caratteri</span>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="segnalazioneForm.invalid">
+        Invia Segnalazione
+      </button>
+
+    </form>
+  </div>
+</div>

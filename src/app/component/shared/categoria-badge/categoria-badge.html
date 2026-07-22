@@ -1,1 +1,6 @@
-<p>categoria-badge works!</p>
+<span class="badge" [title]="categoria().descrizione || ''">
+  @if (categoria().emoji) {
+    <span class="emoji">{{ categoria().emoji }}</span>
+  }
+  <span class="nome">{{ categoria().nome }}</span>
+</span>

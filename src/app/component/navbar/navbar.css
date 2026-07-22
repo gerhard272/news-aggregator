@@ -1,0 +1,126 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+nav a {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+nav a:hover {
+  color: #111827;
+  border-bottom-color: #2563eb;
+}
+
+.scrivi-btn {
+
+  color: #ffffff !important;
+  background-color: #2563eb;
+  border-bottom: none !important;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.scrivi-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Il bottone hamburger: nascosto su desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #111827;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0 2.5rem;
+    margin: 0;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  nav.aperto {
+    max-height: 400px;
+    padding: 1.5rem 2.5rem;
+  }
+}
