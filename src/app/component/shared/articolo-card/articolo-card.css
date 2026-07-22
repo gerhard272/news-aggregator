@@ -33,6 +33,27 @@
   overflow: hidden;
 }
 
+/* Shine al passaggio del mouse sull'immagine */
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
+  background-size: 400px 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-img::after {
+  opacity: 1;
+  animation: shimmer 0.7s ease;
+}
+
 .categoria-tag {
   position: absolute;
   top: 12px;
@@ -122,11 +143,12 @@
 
 .btn-preferito:hover {
   color: #facc15;
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 .btn-preferito.attivo {
   color: #facc15;
+  animation: popIn 0.3s ease;
 }
 
 /* ===== Responsive ===== */
