@@ -1,0 +1,38 @@
+.home {
+  padding: 1.5rem;
+}
+
+.home-titolo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.home-loading,
+.home-empty {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .home-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home {
+    padding: 1rem;
+  }
+}
