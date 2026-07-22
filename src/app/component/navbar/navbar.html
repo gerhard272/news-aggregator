@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<header>
+  <div class="logo">
+    <span class="logo-icon">📰</span>
+    <h1>News Aggregator</h1>
+  </div>
+
+  <button class="hamburger" (click)="toggleMenu()" aria-label="Apri menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav [class.aperto]="menuAperto()">
+    <a routerLink="/">Home</a>
+    <a routerLink="/notizie">Notizie</a>
+    <a routerLink="/preferiti">Preferiti</a>
+    <a routerLink="/categorie">Categorie</a>
+    <a routerLink="/autori">Autori</a>
+    <a routerLink="/scrivi" class="scrivi-btn">✍️ Scrivi</a>
+  </nav>
+</header>
