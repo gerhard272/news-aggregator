@@ -9,16 +9,19 @@
       <div class="profile-header">
         <div class="author-avatar-large">
           @if (a.fotoUrl) {
-            <img [src]="a.fotoUrl" [alt]="a.nome">
+            <img [src]="a.fotoUrl" [alt]="a.nome" />
           } @else {
-            <span class="avatar-placeholder">{{ a.nome | slice:0:1 }}</span>
+            <span class="avatar-placeholder">{{ a.nome | slice: 0 : 1 }}</span>
           }
         </div>
         <div class="profile-info">
           <h2>{{ a.nome }}</h2>
           <p class="profile-bio">{{ a.bio }}</p>
           <div class="profile-stats">
-            <span class="badge">{{ a.articoli }} {{ a.articoli === 1 ? 'articolo scritto' : 'articoli scritti' }}</span>
+            <span class="badge"
+              >{{ a.articoli }}
+              {{ a.articoli === 1 ? 'articolo scritto' : 'articoli scritti' }}</span
+            >
           </div>
         </div>
       </div>
@@ -30,11 +33,7 @@
       @if (articoli().length > 0) {
         <div class="grid news-grid">
           @for (articolo of articoli(); track articolo.id) {
-            <app-articolo-card
-              [articolo]="articolo"
-              [preferito]="preferitiService.isPreferito(articolo.id)"
-              (togglePreferito)="onTogglePreferito($event)"
-            />
+            <app-articolo-card [articolo]="articolo" />
           }
         </div>
       } @else {
