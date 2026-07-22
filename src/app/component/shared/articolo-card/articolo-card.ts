@@ -1,4 +1,4 @@
-import { Component, input, inject, computed } from '@angular/core';
+import { Component, Input, Output, EventEmitter, input, inject, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Articolo } from '../../../models/articolo';
@@ -26,11 +26,14 @@ export class ArticoloCard {
     ),
   );
 
-  preferito = computed(() => this.preferitiService.isPreferito(this.articolo().id));
+  // Input to allow parent component to set favourite status
+  preferito = input.required<boolean>();
 
-  onTogglePreferito(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.preferitiService.toggle(this.articolo());
+  // Output to notify parent when favourite toggle is clicked
+  @Output() togglePreferito = new EventEmitter<Articolo>();
+
+  onTogglePreferito() {
+    // Emit the current article to parent for toggling
+    this.togglePreferito.emit(this.articolo());
   }
 }

@@ -29,7 +29,7 @@
     <button
       class="btn-preferito"
       [class.attivo]="preferito()"
-      (click)="onTogglePreferito($event)"
+      (click)="onTogglePreferito()"
       [attr.aria-label]="preferito() ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'">
       {{ preferito() ? '★' : '☆' }}
     </button>
