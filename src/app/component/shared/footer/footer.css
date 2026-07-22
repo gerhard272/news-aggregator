@@ -3,20 +3,20 @@
   background: linear-gradient(180deg, rgba(15, 15, 25, 0.95), rgba(10, 10, 20, 1));
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.7);
-  margin-top: auto;
+  margin-top: 4rem;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1.5rem 1.5rem;
+  padding: 1.5rem 1.5rem 0.75rem;
 }
 
 /* ===== Top Section (Columns) ===== */
 .footer-top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 /* ===== Brand Column ===== */
@@ -57,7 +57,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .footer-links {
@@ -66,7 +66,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .footer-links li a {
@@ -90,14 +90,12 @@
 /* ===== Divider ===== */
 .footer-divider {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1) 30%,
-    rgba(255, 255, 255, 0.1) 70%,
-    transparent
-  );
-  margin: 2rem 0 1.25rem;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1) 30%,
+      rgba(255, 255, 255, 0.1) 70%,
+      transparent);
+  margin: 1rem 0 0.75rem;
 }
 
 /* ===== Bottom Section ===== */
