@@ -1,1 +1,25 @@
-<p>categorie works!</p>
+<section class="categorie-page">
+
+  <h1>Esplora per categoria</h1>
+
+  <div class="griglia-categorie">
+
+    @for (cat of categorie(); track cat.slug) {
+
+      <a class="categoria-card" [routerLink]="['/notizie']" [queryParams]="{ categoria: cat.slug }">
+        <app-categoria-badge [categoria]="cat" />
+
+        @if (cat.descrizione) {
+          <p class="categoria-descrizione">{{ cat.descrizione }}</p>
+        }
+      </a>
+
+    } @empty {
+
+      <p>Nessuna categoria disponibile al momento.</p>
+
+    }
+
+  </div>
+
+</section>
