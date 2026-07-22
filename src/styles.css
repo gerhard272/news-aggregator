@@ -2,6 +2,37 @@
    NEWS AGGREGATOR — MINIMAL GLOBAL STYLES
    ========================================================= */
 
+/* =========================================================
+   ANIMAZIONI GLOBALI
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  70%  { transform: scale(1.12); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -99,10 +130,12 @@ p {
 .page {
   min-height: calc(100vh - 70px);
   padding-block: 2.5rem;
+  animation: fadeInUp 0.35s ease both;
 }
 
 .page-header {
   margin-bottom: 2rem;
+  animation: fadeInUp 0.4s ease 0.05s both;
 }
 
 .page-header h1 {
@@ -208,13 +241,27 @@ p {
   box-shadow: 0 1px 3px rgb(15 23 42 / 5%);
   transition:
     transform var(--transition),
-    box-shadow var(--transition);
+    box-shadow var(--transition),
+    border-color var(--transition);
+  animation: fadeInUp 0.4s ease both;
 }
 
 .card:hover {
   box-shadow: var(--shadow);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
 }
+
+/* Stagger automatico per le card nelle griglie */
+.grid .card:nth-child(1)  { animation-delay: 0.00s; }
+.grid .card:nth-child(2)  { animation-delay: 0.05s; }
+.grid .card:nth-child(3)  { animation-delay: 0.10s; }
+.grid .card:nth-child(4)  { animation-delay: 0.15s; }
+.grid .card:nth-child(5)  { animation-delay: 0.20s; }
+.grid .card:nth-child(6)  { animation-delay: 0.25s; }
+.grid .card:nth-child(7)  { animation-delay: 0.30s; }
+.grid .card:nth-child(8)  { animation-delay: 0.35s; }
+.grid .card:nth-child(9)  { animation-delay: 0.40s; }
 
 .card__image,
 .article-card__image {
@@ -342,6 +389,16 @@ p {
 .author-card {
   padding: 1.5rem;
   text-align: center;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.author-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgb(37 99 235 / 12%);
 }
 
 .author-avatar {
@@ -355,6 +412,12 @@ p {
   background: #dbeafe;
   border-radius: 50%;
   place-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.author-card:hover .author-avatar {
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgb(37 99 235 / 25%);
 }
 
 .author-avatar img {
@@ -407,7 +470,17 @@ p {
   transition:
     background var(--transition),
     color var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .btn:disabled {
@@ -420,8 +493,9 @@ p {
   background: var(--primary);
 }
 
-.btn--primary:hover {
+.btn--primary:hover:not(:disabled) {
   background: var(--primary-dark);
+  box-shadow: 0 4px 12px rgb(37 99 235 / 35%);
 }
 
 .btn--outline {
@@ -430,9 +504,10 @@ p {
   border-color: var(--border);
 }
 
-.btn--outline:hover {
+.btn--outline:hover:not(:disabled) {
   color: var(--primary);
   border-color: var(--primary);
+  box-shadow: 0 2px 8px rgb(37 99 235 / 15%);
 }
 
 .btn--danger {

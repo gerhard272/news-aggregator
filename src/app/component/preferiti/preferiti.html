@@ -7,15 +7,15 @@
     </p>
   </div>
 
-  <!-- Contatore -->
-  @if (preferitiService.totalePreferiti() > 0) {
+    <!-- Contatore -->
+    @if (preferitiService.totalePreferiti() > 0) {
     <div class="preferiti-counter">
       <span class="counter-badge">{{ preferitiService.totalePreferiti() }}</span>
       <span>{{
         preferitiService.totalePreferiti() === 1 ? 'articolo salvato' : 'articoli salvati'
       }}</span>
     </div>
-  }
+    }
 
   <!-- Griglia articoli preferiti -->
   @if (preferitiService.preferiti().length > 0) {
@@ -24,13 +24,13 @@
         <app-articolo-card [articolo]="articolo" />
       }
     </div>
-  } @else {
+    } @else {
     <!-- Stato vuoto -->
     <div class="empty-state-container">
-      <div class="empty-icon">☆</div>
-      <h3>Nessun articolo nei preferiti</h3>
-      <p>Esplora le notizie e clicca sulla stellina per salvare i tuoi articoli preferiti.</p>
-      <a routerLink="/notizie" class="btn btn--primary">Esplora le notizie</a>
+        <div class="empty-icon">☆</div>
+        <h3>Nessun articolo nei preferiti</h3>
+        <p>Esplora le notizie e clicca sulla stellina per salvare i tuoi articoli preferiti.</p>
+        <a routerLink="/notizie" class="btn btn--primary">Esplora le notizie</a>
     </div>
   }
 </section>
