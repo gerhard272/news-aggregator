@@ -16,7 +16,7 @@
 
   <!-- Griglia articoli preferiti -->
   @if (preferitiService.preferiti().length > 0) {
-    <div class="news-grid">
+    <div class="grid news-grid">
       @for (articolo of preferitiService.preferiti(); track articolo.id) {
         <app-articolo-card
           [articolo]="articolo"
