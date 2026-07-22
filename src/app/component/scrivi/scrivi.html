@@ -1,1 +1,66 @@
-<p>scrivi works!</p>
+<div class="scrivi-container">
+  <div class="form-wrapper">
+    <div class="form-header">
+      <h2>Invia una Segnalazione</h2>
+      <p>Hai riscontrato un problema o vuoi inviarci un reclamo? Compila il form qui sotto, ti risponderemo il prima possibile.</p>
+    </div>
+
+    @if (inviato) {
+      <div class="success-message">
+        <span class="icon">✅</span>
+        <h3>Segnalazione inviata con successo!</h3>
+        <p>Grazie per averci contattato. Ti risponderemo sulla tua email.</p>
+      </div>
+    }
+
+    <form [formGroup]="segnalazioneForm" (ngSubmit)="invia()" class="segnalazione-form" [class.hidden]="inviato">
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" formControlName="nome" placeholder="Il tuo nome">
+          @if (segnalazioneForm.get('nome')?.invalid && segnalazioneForm.get('nome')?.touched) {
+            <span class="error-msg">Il nome è obbligatorio</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="cognome">Cognome</label>
+          <input type="text" id="cognome" formControlName="cognome" placeholder="Il tuo cognome">
+          @if (segnalazioneForm.get('cognome')?.invalid && segnalazioneForm.get('cognome')?.touched) {
+            <span class="error-msg">Il cognome è obbligatorio</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" placeholder="La tua email">
+          @if (segnalazioneForm.get('email')?.invalid && segnalazioneForm.get('email')?.touched) {
+            <span class="error-msg">Inserisci un'email valida</span>
+          }
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" formControlName="telefono" placeholder="Il tuo numero">
+          @if (segnalazioneForm.get('telefono')?.invalid && segnalazioneForm.get('telefono')?.touched) {
+            <span class="error-msg">Il telefono è obbligatorio</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="commento">Commento o Reclamo</label>
+        <textarea id="commento" rows="5" formControlName="commento" placeholder="Descrivi il problema in dettaglio..."></textarea>
+        @if (segnalazioneForm.get('commento')?.invalid && segnalazioneForm.get('commento')?.touched) {
+          <span class="error-msg">Il commento deve contenere almeno 10 caratteri</span>
+        }
+      </div>
+
+      <button type="submit" class="submit-btn" [disabled]="segnalazioneForm.invalid">
+        Invia Segnalazione
+      </button>
+
+    </form>
+  </div>
+</div>

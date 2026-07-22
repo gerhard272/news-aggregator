@@ -1,0 +1,200 @@
+/* ===== Container Base ===== */
+.scrivi-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  min-height: calc(100vh - 150px);
+}
+
+.form-wrapper {
+  background: rgba(25, 25, 45, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Header ===== */
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 0.8rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-header p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== Form Grid ===== */
+.segnalazione-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.segnalazione-form.hidden {
+  display: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ===== Labels & Inputs ===== */
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+}
+
+input, textarea {
+  background: rgba(15, 15, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+input:focus, textarea:focus {
+  border-color: #6366f1;
+  background: rgba(20, 20, 35, 0.9);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ===== Validation Errors ===== */
+.error-msg {
+  color: #fb7185;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.2rem;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border-color: #fb7185;
+}
+
+/* ===== Button ===== */
+.submit-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 1.1rem;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Success Message ===== */
+.success-message {
+  text-align: center;
+  padding: 4rem 1rem;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.success-message .icon {
+  font-size: 4.5rem;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.success-message h3 {
+  color: #34d399;
+  font-size: 1.6rem;
+  margin: 0 0 0.8rem;
+}
+
+.success-message p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 650px) {
+  .form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+}
