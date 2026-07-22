@@ -1,0 +1,12 @@
+[
+  { "slug": "tech", "nome": "Tecnologia", "emoji": "💻" },
+  { "slug": "sport", "nome": "Sport", "emoji": "⚽" },
+  {
+    "slug": "cultura",
+    "nome": "Cultura",
+    "emoji": "🎭",
+    "descrizione": "Arte, libri e spettacoli"
+  },
+  { "slug": "economia", "nome": "Economia", "emoji": "📈" },
+  { "slug": "salute", "nome": "Salute", "emoji": "🩺", "descrizione": "Benessere e medicina" }
+]
