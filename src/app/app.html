@@ -1,17 +1,1 @@
-<main style="padding: 2rem; max-width: 1200px; margin: 0 auto; min-height: 80vh;">
-  <h2 style="color: white; margin-bottom: 1.5rem; font-family: sans-serif;">Ultimi Articoli (Test)</h2>
-  
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
-    @for (articolo of dummyArticoli; track articolo.id) {
-      <app-articolo-card [articolo]="articolo" />
-    }
-  </div>
-</main>
-
-<div style="background: rgba(0,0,0,0.2); padding: 4rem 0;">
-  <app-scrivi />
-</div>
-
-<router-outlet />
-
-<app-footer />
+<app-navbar></app-navbar>

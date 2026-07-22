@@ -1,12 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from './component/shared/footer/footer';
-import { ArticoloCard } from './component/shared/articolo-card/articolo-card';
-import { Scrivi } from './component/scrivi/scrivi';
+import { Navbar } from './component/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, ArticoloCard, Scrivi],
+  imports: [RouterOutlet, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
