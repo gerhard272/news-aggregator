@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "titolo": "L'intelligenza artificiale cambia il modo di programmare",
+    "categoria": "tech",
+    "data": "2026-07-15",
+    "autoreId": 1,
+    "contenuto": "Negli ultimi anni gli strumenti basati su AI hanno trasformato il lavoro degli sviluppatori, velocizzando la scrittura del codice e il debugging. Molte aziende stanno adottando questi strumenti nei propri flussi di lavoro quotidiani..."
+  },
+  {
+    "id": 2,
+    "titolo": "Nuovo framework JavaScript promette prestazioni record",
+    "categoria": "tech",
+    "data": "2026-07-18",
+    "autoreId": 1,
+    "contenuto": "Un nuovo framework open source sta guadagnando popolarità grazie a tempi di caricamento ridotti e una sintassi più semplice rispetto ai concorrenti...",
+    "immagine": "assets/img/articoli/framework.jpg"
+  },
+  {
+    "id": 3,
+    "titolo": "Borsa in rialzo dopo i dati sull'occupazione",
+    "categoria": "economia",
+    "data": "2026-07-20",
+    "autoreId": 2,
+    "contenuto": "I mercati azionari hanno chiuso in territorio positivo dopo la pubblicazione di dati migliori delle attese sull'occupazione, alimentando l'ottimismo degli investitori..."
+  },
+  {
+    "id": 4,
+    "titolo": "La finale scudetto si avvicina: tutte le probabili formazioni",
+    "categoria": "sport",
+    "data": "2026-07-19",
+    "autoreId": 3,
+    "contenuto": "Manca sempre meno alla finale che deciderà il campionato. Le due squadre si preparano con allenamenti intensivi e qualche dubbio di formazione ancora da sciogliere..."
+  },
+  {
+    "id": 5,
+    "titolo": "Recensione: la mostra che sta conquistando la città",
+    "categoria": "cultura",
+    "data": "2026-07-21",
+    "autoreId": 4,
+    "contenuto": "Una nuova mostra d'arte contemporanea ha aperto le porte al pubblico, attirando visitatori da tutta la regione grazie a installazioni immersive e opere inedite..."
+  },
+  {
+    "id": 6,
+    "titolo": "Come dormire meglio: i consigli degli esperti",
+    "categoria": "salute",
+    "data": "2026-07-22",
+    "autoreId": 2,
+    "contenuto": "Gli esperti del sonno suggeriscono alcune abitudini semplici per migliorare la qualità del riposo notturno, dalla regolarità degli orari alla riduzione della luce blu serale..."
+  },
+  {
+    "id": 7,
+    "titolo": "Derby cittadino: cronaca di una partita infuocata",
+    "categoria": "sport",
+    "data": "2026-07-17",
+    "autoreId": 3,
+    "contenuto": "Il derby cittadino ha regalato spettacolo ed emozioni fino all'ultimo minuto, con un finale che ha lasciato i tifosi di entrambe le squadre col fiato sospeso..."
+  }
+]
