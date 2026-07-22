@@ -1,59 +1,113 @@
-# NewsAggregator
+# News Aggregator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+**Gruppo 4 — Lettera N**
 
-## Development server
+Componenti: Cristian Losito · Alessandro Foggetti · Gerhard Pirretti · Antonella Pesare
 
-To start a local development server, run:
+## Descrizione
+
+App Angular che aggrega e organizza notizie per categoria. L'utente può salvare gli articoli preferiti e commentarli.
+
+## Rotte
+
+| Rotta          | Componente            | Descrizione                                            |
+| -------------- | --------------------- | ------------------------------------------------------ |
+| `/`            | HomeComponent         | Feed principale con ultime notizie in evidenza         |
+| `/notizie`     | NotizieComponent      | Lista articoli con filtro per categoria e data         |
+| `/notizie/:id` | ArticoloComponent     | Dettaglio articolo — rotta dinamica con ActivatedRoute |
+| `/preferiti`   | PreferitiComponent    | Articoli salvati dall'utente                           |
+| `/categorie`   | CategorieComponent    | Esplora per categoria con griglia e `@for`             |
+| `/autori`      | AutoriComponent       | Layout padre con router-outlet figlio                  |
+| `/autori/:id`  | AutoreDetailComponent | Profilo autore con suoi articoli                       |
+| `/scrivi`      | ScriviComponent       | Reactive Form per inviare una segnalazione             |
+| `**`           | NotFoundComponent     | 404                                                    |
+
+## Dati (JSON)
+
+I file JSON si trovano in `src/assets/data/`:
+
+- **articoli.json** — Array di `Articolo[]`
+  ```json
+  {
+    "id": 1,
+    "titolo": "Titolo news",
+    "categoria": "tech",
+    "data": "2026-07-22",
+    "autoreId": 1,
+    "contenuto": "..."
+  }
+  ```
+- **categorie.json** — Array di `Categoria[]`
+  ```json
+  { "slug": "tech", "nome": "Tecnologia", "emoji": "💻" }
+  ```
+- **autori.json** — Array di `Autore[]`
+  ```json
+  { "id": 1, "nome": "Mario Rossi", "bio": "...", "articoli": 3 }
+  ```
+
+## Interfacce TypeScript
+
+`Articolo` · `Categoria` · `Autore`
+
+> 💡 Ogni interfaccia ha almeno un campo opzionale (`?`). Es: `descrizione?: string`
+
+## Servizi
+
+- **NotizieService** — legge `articoli.json`, gestisce i filtri
+- **PreferitiService** — salva i preferiti con Signal
+- **AutoriService** — legge `autori.json`
+
+## Reactive Form
+
+Form di segnalazione (`/scrivi`): nome, email, categoria (select), titolo notizia, descrizione segnalazione, urgenza (radio)
+
+## Pipe Angular utilizzate
+
+`date` per le date articoli · `titlecase` per i titoli · `slice` per la preview del contenuto · `uppercase` per le categorie
+
+## Struttura del progetto
+
+```
+src/
+└── app/
+    ├── component/
+    │   ├── home/
+    │   ├── notizie/
+    │   ├── articolo/
+    │   ├── preferiti/
+    │   ├── categorie/
+    │   ├── autori/
+    │   │   └── autore-detail/
+    │   ├── scrivi/
+    │   ├── not-found/
+    │   ├── navbar/
+    │   └── shared/
+    │       ├── articolo-card/
+    │       ├── categoria-badge/
+    │       └── footer/
+    ├── services/
+    │   ├── notizie.service.ts
+    │   ├── preferiti.service.ts
+    │   └── autori.service.ts
+    ├── models/
+    │   ├── articolo.ts
+    │   ├── categoria.ts
+    │   └── autore.ts
+    ├── app.routes.ts
+    └── app.component.ts
+└── assets/
+    └── data/
+        ├── articoli.json
+        ├── categorie.json
+        └── autori.json
+```
+
+## Come avviare il progetto
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+L'app sarà disponibile su `http://localhost:4200`
