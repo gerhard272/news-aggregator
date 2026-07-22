@@ -17,21 +17,31 @@
 
     <p class="not-found__code">404</p>
 
-    <h1 class="not-found__title">
-      Pagina non trovata
-    </h1>
+    @if (isArticoloNotFound) {
+      <h1 class="not-found__title">
+        Articolo non trovato
+      </h1>
 
-    <p class="not-found__description">
-      Ops! La pagina che stai cercando non esiste
-      oppure è stata spostata.
-    </p>
+      <p class="not-found__description">
+        L’articolo che stai cercando non esiste,
+        è stato rimosso oppure l’indirizzo non è corretto.
+      </p>
+    } @else {
+      <h1 class="not-found__title">
+        Pagina non trovata
+      </h1>
+
+      <p class="not-found__description">
+        La pagina che stai cercando non esiste
+        oppure è stata spostata.
+      </p>
+    }
 
     <div class="not-found__actions">
       <a
         routerLink="/"
         class="btn btn--primary"
       >
-        <span aria-hidden="true">⌂</span>
         Torna alla Home
       </a>
 
