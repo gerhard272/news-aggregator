@@ -6,4 +6,5 @@ export interface Articolo {
   autoreId: number;
   contenuto: string;
   immagine?: string;
+  descrizione?: string;
 }
