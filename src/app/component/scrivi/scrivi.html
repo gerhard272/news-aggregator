@@ -6,29 +6,29 @@
     </div>
 
     @if (inviato) {
-      <div class="success-message">
-        <span class="icon">✅</span>
-        <h3>Segnalazione inviata con successo!</h3>
-        <p>Il nostro team leggerà la tua richiesta il prima possibile.</p>
-      </div>
+    <div class="success-message">
+      <span class="icon">✅</span>
+      <h3>Segnalazione inviata con successo!</h3>
+      <p>Il nostro team leggerà la tua richiesta il prima possibile.</p>
+    </div>
     }
 
     <form [formGroup]="segnalazioneForm" (ngSubmit)="invia()" class="segnalazione-form" [class.hidden]="inviato">
-      
+
       <!-- Nome ed Email -->
       <div class="form-row">
         <div class="form-group">
           <label for="nome">Nome *</label>
           <input type="text" id="nome" formControlName="nome" placeholder="Il tuo nome">
           @if (segnalazioneForm.get('nome')?.invalid && segnalazioneForm.get('nome')?.touched) {
-            <span class="error-msg">Il nome è obbligatorio</span>
+          <span class="error-msg">Il nome è obbligatorio</span>
           }
         </div>
         <div class="form-group">
           <label for="email">Email *</label>
           <input type="email" id="email" formControlName="email" placeholder="La tua email">
           @if (segnalazioneForm.get('email')?.invalid && segnalazioneForm.get('email')?.touched) {
-            <span class="error-msg">Inserisci un'email valida</span>
+          <span class="error-msg">Inserisci un'email valida</span>
           }
         </div>
       </div>
@@ -40,18 +40,18 @@
           <select id="categoria" formControlName="categoria">
             <option value="" disabled selected>Seleziona una categoria...</option>
             @for (cat of categorieDisponibili(); track cat.slug) {
-              <option [value]="cat.slug">{{ cat.nome }}</option>
+            <option [value]="cat.slug">{{ cat.nome }}</option>
             }
           </select>
           @if (segnalazioneForm.get('categoria')?.invalid && segnalazioneForm.get('categoria')?.touched) {
-            <span class="error-msg">La categoria è obbligatoria</span>
+          <span class="error-msg">La categoria è obbligatoria</span>
           }
         </div>
         <div class="form-group">
           <label for="titoloNotizia">Titolo Notizia *</label>
           <input type="text" id="titoloNotizia" formControlName="titoloNotizia" placeholder="Titolo dell'articolo">
           @if (segnalazioneForm.get('titoloNotizia')?.invalid && segnalazioneForm.get('titoloNotizia')?.touched) {
-            <span class="error-msg">Il titolo della notizia è obbligatorio</span>
+          <span class="error-msg">Il titolo della notizia è obbligatorio</span>
           }
         </div>
       </div>
@@ -78,9 +78,10 @@
       <!-- Descrizione -->
       <div class="form-group full-width">
         <label for="descrizione">Descrizione della segnalazione *</label>
-        <textarea id="descrizione" rows="4" formControlName="descrizione" placeholder="Descrivi qui il motivo della segnalazione..."></textarea>
+        <textarea id="descrizione" rows="4" formControlName="descrizione"
+          placeholder="Descrivi qui il motivo della segnalazione..."></textarea>
         @if (segnalazioneForm.get('descrizione')?.invalid && segnalazioneForm.get('descrizione')?.touched) {
-          <span class="error-msg">La descrizione deve contenere almeno 10 caratteri</span>
+        <span class="error-msg">La descrizione deve contenere almeno 10 caratteri</span>
         }
       </div>
 

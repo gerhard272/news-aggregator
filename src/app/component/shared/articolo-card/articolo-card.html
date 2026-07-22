@@ -2,7 +2,11 @@
 
   <!-- Immagine (da implementare in seguito) -->
   <div class="card-img">
-    <span class="categoria-tag">{{ articolo().categoria | uppercase }}</span>
+    @if (categoria()) {
+      <app-categoria-badge [categoria]="categoria()!" />
+    } @else {
+      <span class="categoria-tag">{{ articolo().categoria | uppercase }}</span>
+    }
   </div>
 
   <!-- Contenuto -->

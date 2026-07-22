@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Categoria } from '../../../models/categoria';
 
 @Component({
   selector: 'app-categoria-badge',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './categoria-badge.html',
   styleUrl: './categoria-badge.css',
 })
-export class CategoriaBadge {}
+export class CategoriaBadge {
+  categoria = input.required<Categoria>();
+}
