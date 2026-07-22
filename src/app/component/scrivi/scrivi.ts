@@ -13,24 +13,23 @@ export class Scrivi {
 
   segnalazioneForm = this.fb.group({
     nome: ['', Validators.required],
-    cognome: ['', Validators.required],
-    telefono: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    commento: ['', [Validators.required, Validators.minLength(10)]]
+    categoria: ['', Validators.required],
+    titoloNotizia: ['', Validators.required],
+    descrizione: ['', [Validators.required, Validators.minLength(10)]],
+    urgenza: ['bassa', Validators.required]
   });
 
   invia() {
     if (this.segnalazioneForm.valid) {
       this.inviato = true;
-      console.log('Form inviato:', this.segnalazioneForm.value);
-      this.segnalazioneForm.reset();
+      console.log('Segnalazione inviata:', this.segnalazioneForm.value);
+      this.segnalazioneForm.reset({ urgenza: 'bassa' }); // Resetta con valore di default
       
-      // Nasconde il messaggio di successo dopo 4 secondi
       setTimeout(() => {
         this.inviato = false;
       }, 4000);
     } else {
-      // Segna tutti i campi come touched per mostrare gli errori rossi
       this.segnalazioneForm.markAllAsTouched();
     }
   }
