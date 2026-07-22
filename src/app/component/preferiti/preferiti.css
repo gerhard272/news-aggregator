@@ -1,0 +1,65 @@
+/* ===== Contatore Preferiti ===== */
+.preferiti-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.counter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+/* ===== Stato Vuoto ===== */
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.4;
+  animation: pulse-star 2s ease-in-out infinite;
+}
+
+@keyframes pulse-star {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.6; }
+}
+
+.empty-state-container h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+.empty-state-container p {
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
